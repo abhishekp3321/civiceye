@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt"
+import bcrypt from "bcryptjs"
 import 'dotenv/config';
 import jwt from 'jsonwebtoken'
 import task from '../models/Task.js'
