@@ -19,6 +19,7 @@ import alert from '../assets/alert.png';
 import traffic from '../assets/traffic.png';
 import others from '../assets/others.png';
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const Homeguest = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -36,7 +37,7 @@ export const Homeguest = () => {
     const [stats, setStats] = useState(null);
     const fetchComplaintsData = async () => {
       try {
-          const response = await axios.get("http://127.0.0.1:6262/proof/data", {
+          const response = await axios.get(`${BASE_URL}/proof/data`, {
           });
           console.log('API Response:', response.data);
           const updatedStats = {

@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const CEUserProfile = () => {
     const navigate = useNavigate();
@@ -29,7 +30,7 @@ export const CEUserProfile = () => {
     
         try {
             const response = await axios.put(
-                `http://127.0.0.1:6262/user/update/${userid}`,
+                `${BASE_URL}/user/update/${userid}`,
                 formData
             );
      
@@ -48,7 +49,7 @@ export const CEUserProfile = () => {
         if (!userid) return;
         try {
             const response = await axios.get(
-                `http://127.0.0.1:6262/user/view/${userid}`
+                `${BASE_URL}/user/view/${userid}`
             );
             if (response.data) {
                 setFormData({

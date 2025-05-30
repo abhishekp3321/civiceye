@@ -6,6 +6,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { use } from "react";
 import male from "../assets/male.png";
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 
 export const Admincom = () => {
@@ -31,7 +32,7 @@ export const Admincom = () => {
                 return;
             }
             try {
-                const response = await axios.get(`http://127.0.0.1:6262/proof/getall/${userid}`);
+                const response = await axios.get(`${BASE_URL}/proof/getall/${userid}`);
                 setComplaints(response.data);
                 setIs(false);
 
@@ -61,7 +62,7 @@ export const Admincom = () => {
         if (!updatedata.status) return toast.error("Please select a status!");
         setUpdate(true);
         try {
-            const response = await axios.put(`http://127.0.0.1:6262/proof/update/${complaintId}`, { status: updatedata.status });
+            const response = await axios.put(`${BASE_URL}/proof/update/${complaintId}`, { status: updatedata.status });
             setComplaints(prev => prev.map(com => com._id === complaintId ? { ...com, status: updatedata.status } : com));
             toast.success(response.data.message);
         } catch (error) {

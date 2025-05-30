@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import celogofull from '../assets/celogofull.png';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const Signup = () => {
     const [data, setdata] = useState({});
@@ -16,7 +17,7 @@ export const Signup = () => {
         event.preventDefault();
         console.log("Submitting Data:", data);
         try {
-            const response = await axios.post('http://127.0.0.1:6262/user/signup', data);
+            const response = await axios.post(`${BASE_URL}/user/signup`, data);
             if (response.data) {
                 console.log("Signup Response:", response);
                 localStorage.setItem('id', response.data.userId);

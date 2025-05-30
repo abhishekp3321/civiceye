@@ -4,6 +4,7 @@ import axios from "axios";
 import celogofullpng from "../assets/celogofull.png";
 import logout from '../assets/logout.png';
 import { Complaint } from "./Complaint";
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const MyComplaints = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -22,7 +23,7 @@ const MyComplaints = () => {
             }
 
             try {
-                const response = await axios.get(`http://127.0.0.1:6262/proof/get/${userid}`);
+                const response = await axios.get(`${BASE_URL}/proof/get/${userid}`);
                 console.log("API Response:", response.data);
                 setComplaints(response.data.complaints);
             } catch (error) {
@@ -121,7 +122,7 @@ const MyComplaints = () => {
                                             <td className="px-5 py-4 text-gray-400">{com.complaint}</td>
                                             <td className="px-5 py-4 font-medium">
                                                 {com.proof ? (
-                                                    <a href={`http://127.0.0.1:6262/${com.proof}`} target="_blank" rel="noopener noreferrer">
+                                                    <a href={`${BASE_URL}/${com.proof}`} target="_blank" rel="noopener noreferrer">
                                                         <button className="px-2 py-2 bg-blue-600 cursor-pointer text-white rounded-lg hover:bg-blue-700 transition-colors shadow-sm text-sm">
                                                             View Proof
                                                         </button>

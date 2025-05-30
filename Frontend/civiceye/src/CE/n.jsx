@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import spinner from '../assets/spinner.gif';
 import celogofullpng from '../assets/celogofull.png'; // Import the CivicEye Logo
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const CEMyComplaints = () => {
     const navigate = useNavigate();
@@ -18,7 +19,7 @@ const CEMyComplaints = () => {
     // Fetch complaints when the component mounts
     const fetchComplaints = async () => {
         try {
-            const response = await axios.get(`http://127.0.0.1:6969/complaint/get/${userid}`);
+            const response = await axios.get(`${BASE_URL}/complaint/get/${userid}`);
             console.log(response.data);
             setComplaints(response.data);
             setFilteredComplaints(response.data);

@@ -4,6 +4,7 @@ import celogofull from '../assets/celogofull.png';
 import { useNavigate } from 'react-router-dom';
 import toast from "react-hot-toast";
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const Admindashboard = () => {
 
@@ -53,7 +54,7 @@ const Admindashboard = () => {
         return;
       }
 
-      const response = await axios.get(`http://127.0.0.1:6262/user/view/${userid}`);
+      const response = await axios.get(`${BASE_URL}/user/view/${userid}`);
       if (response.data) {
         setLoggedUserData(response.data);
 
@@ -74,7 +75,7 @@ const Admindashboard = () => {
 
   const fetchComplaintsData = useCallback(async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:6262/proof/data");
+      const response = await axios.get(`${BASE_URL}/proof/data`);
       console.log('API Response:', response.data);
 
       if (response.data) {

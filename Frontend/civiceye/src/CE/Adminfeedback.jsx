@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import celogofull from '../assets/celogofull.png';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 const Adminfeedback = () => {
     const navigate = useNavigate();
@@ -20,7 +21,7 @@ const Adminfeedback = () => {
 
     const handleUpdate = async (id) => {
         try {
-            const response = await axios.put(`http://127.0.0.1:6262/feedback/update/${id}`, { status: statusUpdates[id] || "Pending" });
+            const response = await axios.put(`${BASE_URL}/feedback/update/${id}`, { status: statusUpdates[id] || "Pending" });
             if (response.data) {
                 setFeedback(feedback.map(fb => fb._id === id ? { ...fb, status: statusUpdates[id] } : fb));
             }
@@ -34,7 +35,7 @@ const Adminfeedback = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("http://127.0.0.1:6262/feedback/get");
+                const response = await axios.get(`${BASE_URL}/feedback/get`);
                 if (response.data && Array.isArray(response.data.feedbacks)) {
                     setFeedback(response.data.feedbacks);
                     setIsLoading(false);

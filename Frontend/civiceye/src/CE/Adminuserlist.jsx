@@ -3,6 +3,7 @@ import celogofull from '../assets/celogofull.png';
 import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from 'react-router-dom'; // Import useNavigate
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const Adminuserlist = () => {
      const [isLoading, setIsLoading] = useState(true);
@@ -15,7 +16,7 @@ export const Adminuserlist = () => {
     const fetchLoggedUserData = async () => {
         try {
             if (!userid) return;
-            const response = await axios.get(`http://127.0.0.1:6262/user/view/${userid}`);
+            const response = await axios.get(`${BASE_URL}/user/view/${userid}`);
 
             if (response) {
                 setLoggedUserData(response.data);
@@ -28,7 +29,7 @@ export const Adminuserlist = () => {
     const fetchUserData = async () => {
         try {
             if (!userid) return;
-            const response = await axios.get(`http://127.0.0.1:6262/user/viewall/${userid}`);
+            const response = await axios.get(`${BASE_URL}/user/viewall/${userid}`);
             setIsLoading(false);
             if (response && response.data && response.data.users) {
                 setUsers(response.data.users);

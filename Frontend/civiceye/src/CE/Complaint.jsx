@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import {   useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 export const Complaint = () => {
   
@@ -46,7 +47,7 @@ export const Complaint = () => {
     try {
       console.log(formData);
 
-    const response = await axios.post('http://127.0.0.1:6262/proof/add', formData, {
+    const response = await axios.post(`${BASE_URL}/proof/add`, formData, {
       headers: { "Content-Type": "multipart/form-data" }
     }
   );

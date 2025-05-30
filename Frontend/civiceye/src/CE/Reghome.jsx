@@ -5,6 +5,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Complaint } from "./Complaint";
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
 
 // Import assets
 import por from "../assets/porsche.jpg";
@@ -106,7 +107,7 @@ export const Reghome = () => {
   const [stats, setStats] = useState(null);
   const fetchComplaintsData = async () => {
     try {
-      const response = await axios.get("http://127.0.0.1:6262/proof/data", {
+      const response = await axios.get(`${BASE_URL}/proof/data`, {
       });
       console.log('API Response:', response.data);
       const updatedStats = {
@@ -134,7 +135,7 @@ export const Reghome = () => {
       }
 
       let response = await axios.delete(
-        `http://127.0.0.1:6262/user/delete/${userid}`
+        `${BASE_URL}/user/delete/${userid}`
       );
       console.log(response.data);
 
@@ -195,7 +196,7 @@ export const Reghome = () => {
 
     try {
       const response = await axios.post(
-        "http://127.0.0.1:6262/feedback/post",
+       ` ${BASE_URL}/feedback/post`,
         feedbackPayload
       );
       console.log(response);

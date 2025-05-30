@@ -4,6 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from 'react-hot-toast';
 
+const BASE_URL = import.meta.env.VITE_BACKEND_BASE_URL;
+
 export const CELogin = () => {      
     const [data, setdata] = useState('');
     const Navigate = useNavigate();
@@ -16,7 +18,7 @@ console.log(token);
     const submit = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://127.0.0.1:6262/user/signin', data);
+            const response = await axios.post(`${BASE_URL}/user/signin`, data);
             if (response.data) {
                 console.log(response.data);
                 localStorage.setItem('id', response.data.userId);
